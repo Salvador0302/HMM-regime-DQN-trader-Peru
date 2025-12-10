@@ -64,3 +64,6 @@ results/*.csv
 # Environment variables
 .env
 .env.local
+
+# Integration test (for development only)
+test_integration.py

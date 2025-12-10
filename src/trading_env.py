@@ -31,7 +31,8 @@ class TradingEnv(gym.Env):
                  transaction_fee: float = 0.001,
                  max_position: int = 1,
                  window_size: int = 20,
-                 feature_columns: Optional[list] = None):
+                 feature_columns: Optional[list] = None,
+                 hold_penalty: float = 0.0001):
         """
         Initialize the trading environment.
         
@@ -42,6 +43,7 @@ class TradingEnv(gym.Env):
             max_position: Maximum number of shares to hold (1 for simple long-only)
             window_size: Number of past observations to include in state
             feature_columns: List of feature column names to use. If None, uses all numeric columns.
+            hold_penalty: Small penalty for holding to encourage action
         """
         super().__init__()
         
@@ -50,6 +52,7 @@ class TradingEnv(gym.Env):
         self.transaction_fee = transaction_fee
         self.max_position = max_position
         self.window_size = window_size
+        self.hold_penalty = hold_penalty
         
         # Determine feature columns
         if feature_columns is None:
@@ -178,7 +181,7 @@ class TradingEnv(gym.Env):
         
         else:  # Hold
             # Small penalty for holding to encourage action
-            reward = -0.0001
+            reward = -self.hold_penalty
         
         return reward
     

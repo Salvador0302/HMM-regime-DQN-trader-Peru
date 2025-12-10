@@ -186,7 +186,7 @@ def train_agent(ticker: str = 'AAPL',
         print(f"  ✓ Saved DQN model to {model_path}")
     
     # 9. Evaluate on test set
-    print("\nStep 8: Evaluating on test set...")
+    print("\nStep 9: Evaluating on test set...")
     test_stats = agent.test_on_episode(env_test)
     print(f"  Test Portfolio Value: ${test_stats['portfolio_value']:.2f}")
     print(f"  Test Returns: {test_stats['portfolio_returns']*100:.2f}%")
@@ -194,7 +194,7 @@ def train_agent(ticker: str = 'AAPL',
     print(f"  Winning Trades: {test_stats['winning_trades']}")
     
     # 10. Plot training progress
-    print("\nStep 9: Saving training plots...")
+    print("\nStep 10: Saving training plots...")
     os.makedirs('results', exist_ok=True)
     
     fig, axes = plt.subplots(2, 1, figsize=(12, 8))
